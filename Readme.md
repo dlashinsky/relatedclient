@@ -62,7 +62,37 @@ Friday:
 * Style + Stretch
 
 
-## Routes
+## Backend Routes:
+releateD.com (localhost3000:)
+GET ROUTES
+HTTP VERB | URL | Description 
+------------ | ------------- | -------------
+GET | users/auth-locked/:userId/logout| User clicks logout to logout of their profile.  Deletes/expires JWT token, redirects to login page. (react?)
+GET | users/auth-locked/:userId/posts| CRUDs Posts/Discussion Boards database, for all relevant posts corresponding to the user's geographical location (County). (Only preview of post data)
+GET | users/auth-locked/:userId/posts/:postId| User clicks on a single post displaying all content, comments, etc. from that particular post
+GET | users/auth-locked/:userId/profiles | User clicks on all other user's profiles, sees a preview of other users information. Reads (find) user's collection.  
+GET | users/auth-locked/:userId/profiles/:profileId | user clicks on a particular user profile. (from various front end locations/links)  Reads user's collection by Id(findById).
+POST ROUTES
+HTTP VERB | URL | Description 
+------------ | ------------- | -------------
+POST | /login | Reads DB user's collection to find a match. Checks username and password crudentials. (Password Hashing).  Sends JSON, JWT token to front end for user. 
+POST | /register | Form located on home page, upon clicking register, CREATEs new data to DB in user's collection. (e.g. username, email, password, location, etc.)
+POST | /users/auth-locked/:userId/Posts |  User CREATEs new post in db Posts collection.
+POST | /users/auth-locked/:userId/Posts/:postId/comments |  User CREATEs new comment on a particular post in db comments collection.
+POST | /users/auth-locked/:userId/Posts/:postId/comments |  User CREATEs new comment on a particular post in db comments collection.
+POST | /users/auth-locked/:userId/Posts/:postId/comments/:commentId | user likes a comment (CREATE) a comment by another user or their own comment. (In either a comment join collection?  or Array in comments collection) 
+PUT ROUTES
+HTTP VERB | URL | Description 
+------------ | ------------- | -------------
+PUT | /users/auth-locked/:userId/profiles | User updates/changes something about their profile. (UPDATE)
+PUT |/users/auth-locked/:userId/Posts/:postId/comments/:commentId | user can edit/change a comment on a post. (UPDATE)
+PUT | /users/auth-locked/:userId/Posts | User edits the content of thier post. (UPDATE)
+DELETE ROUTES
+HTTP VERB | URL | Description 
+------------ | ------------- | -------------
+DELETE | /users/auth-locked/:userId/profiles | User updates/changes something about their profile. 
+DELETE |/users/auth-locked/:userId/Posts/:postId/comments/:commentId | user can edit/change a comment on a post. 
+DELETE | /users/auth-locked/:userId/Posts | user can edit their posts.
 
 
 ## Database ERD/ Schema
