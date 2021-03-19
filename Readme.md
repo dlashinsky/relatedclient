@@ -17,15 +17,27 @@ RelateD is a one stop shop solution for all communities who have to live with di
 
 MVP:
 
-* Linking into the local community for persons with similar special needs
-* User will be connected to others in their geographical area (county)
-* Users can submit topics for discussion with relevant tags
-* Users can comment on others posts, like, and reply
+* Home page will display a nav-bar with a login section as well as a register form in the center.
+* A User will be able to login with their username and password and be brought to the main discussion board/posts page that will display previews of posts by other users sorted by most recent. (Similar to a news feed -- much less complex)
+* User can search posts for tags/relevant topics, information.
+* User can choose to click into posts to read all content of that particular post.
+* Within that post user can add a comment and like a comment.
+* User can click on another user's profile to see information regarding that profile
+* User can click on a profile link to see their own profile, as well as change details about their profile information.
 
 Stretch:
 
 * User can view Yelp wheelchair-accessability scores on an interactive map
 * User can view top features(locations of top caregivers + PT/OT centers, doctors, childcare centers)
+* User can message other users directly
+* user has ability to create/navigate to separate message boards/posts that pertain to specific special needs/disabilites/topics
+* User can create a group chat with other users
+* Link in Additional APIs that will user can search to find information/data about Points of interest/businesses and can comment and like on.
+* User has ability to upload pictures, or other content  to thier profile, or to posts
+
+
+
+
 
 ## Group Roles
 
