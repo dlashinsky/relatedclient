@@ -21,15 +21,15 @@ function createFakeZip(){
     const randomZip = zips[Math.floor(Math.random()*zips.length)]
     return randomZip
 }
-//return single fake relation
+// createFakeZip();
 
+//return single fake relation
 function createFakeRelation(){
     const randomRelation = relations[Math.floor(Math.random()*relations.length)]
     return randomRelation
 }
 
 //return 1 up to n fake topics
-
 function createFakeTopics(){
     const userTopics = []
     const numberOfSubscribedTopics = Math.ceil(Math.random()*topics.length)
@@ -41,7 +41,7 @@ function createFakeTopics(){
     }
     return userTopics
 }
-
+// createFakeTopics();
 // returns generally 1 but sometimes 2 conditions
 
 function createFakeConditions(){
@@ -66,6 +66,8 @@ function createFakeConditions(){
     return userConditions
 }
 
+// createFakeConditions();
+
 
 async function createSomeUsers(n_records){
     if(!n_records){
@@ -86,28 +88,32 @@ async function createSomeUsers(n_records){
         console.log(record)
     }
 }
+// createSomeUsers();
 
 async function createSomePosts(n_records){
     if(!n_records){
         n_records = 20 //default to create 20 dummy posts
     }
-    //find random user
 
+    let findUser = []
+
+    //find random user
     for(let i = 0; i< n_records; i++){
-        const findUser = await User.findOne({})
-        console.log(findUser.id)
+        findUser = await User.findOne({})
+        // console.log(findUser)
     }
 
-
-    // const Post = await Post.create({
-    //     discussion_tags: createFakeTopics(),
-    //     content: faker.lorem.sentence(),
-    //     user_id
-
-    // })
+    const makePost = await Post.create({
+        discussion_tags: createFakeTopics(),
+        content: faker.lorem.sentence(),
+        user_id: findUser._id
+    })
+    console.log(makePost)
 }
 
 createSomePosts()
+
+
 // for(i=0;i<50;i++){
 //     //console.log(createFakeZip())
 //     console.log(createFakeConditions())
