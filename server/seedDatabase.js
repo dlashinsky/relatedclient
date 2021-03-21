@@ -6,6 +6,9 @@ const Post = require('./models/Post')
 const Comment = require('./models/Comment')
 
 
+const seedrandom = require('seedrandom')
+seedrandom('hello.', { global: true }) //seeds Math.random for consistency
+
 const topics = ["Wheelchair Accessability", "Community Events",
     "Local Meetups", "Awareness"]  // list of sample topics
 const conditions = ["Cystic Fibrosis", "Paralysis", "Cerebral Palsy", "Autism",
