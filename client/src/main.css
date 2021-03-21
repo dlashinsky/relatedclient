@@ -1,0 +1,51 @@
+body {
+    background-image: url('../src/images/background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    background-color: rgba(0, 0, 0, 0.357);
+}
+
+#NavText {
+    margin-left: 60px;
+    font-size: 30px;
+}
+#mainLink {
+    text-decoration: none;
+}
+#mainLink:visited {
+    color: black;
+}
+
+#NavLoginBtn {
+    margin-right: 60px;
+    background: rgba(255, 255, 255, 0.926);
+    border-radius: 7px;
+    font-size: 20px;
+    width: 90px;
+    height: 35px;
+}
+
+.signUpAreaContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.signUpArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 500px;
+    background-color: rgba(250, 235, 215, 0.597);
+    
+}
