@@ -1,9 +1,0 @@
-
-1. In index.js:  do we need a callback of "err" in db.on function to track bugs?
-
-2. 
-
-
-
-
-
