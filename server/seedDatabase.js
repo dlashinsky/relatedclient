@@ -3,11 +3,22 @@ require('./models')
 
 const User = require('./models/User')
 const Post = require('./models/Post')
-const Comment = require('./models/Comment')
+const Comment = require('./models/Comment').Comment
+const Reply = require('./models/Comment').Reply
+
+
+// clear tables so that every 
+async function clearCollections() {
+    await User.deleteMany({})
+    await Post.deleteMany({})
+    await Comment.deleteMany({})
+    await Reply.deleteMany({})
+}
 
 
 const seedrandom = require('seedrandom')
 seedrandom('hello.', { global: true }) //seeds Math.random for consistency
+faker.seed(123);
 
 const topics = ["Wheelchair Accessability", "Community Events",
     "Local Meetups", "Awareness"]  // list of sample topics
@@ -17,7 +28,6 @@ const conditions = ["Cystic Fibrosis", "Paralysis", "Cerebral Palsy", "Autism",
 const zips = [60657, 60613, 60614] // list of sample zips
 const relations = ["self", "mother", "father", "caregiver", "brother"]
 
-faker.seed(123);
 
 
 //return single fake zip
@@ -104,18 +114,18 @@ async function findARandomUserId() {
 
 async function findSomeRandomUserIds() {
     const maxNumberWhoLiked = 10
-    const numberWhoDidLike = Math.floor(Math.random()*maxNumberWhoLiked)
+    const numberWhoDidLike = Math.floor(Math.random() * maxNumberWhoLiked)
     const idArray = []
-    for(i=0;i<numberWhoDidLike;i++){
+    for (let i = 0; i < numberWhoDidLike; i++) {
         newCandidate = await findARandomUserId()
-        if(!idArray.includes(newCandidate)){
+        if (!idArray.includes(newCandidate)) {
             idArray.push(newCandidate)
         }
     }
     return idArray
 }
 
-async function findARandomPost(){
+async function findARandomPostId() {
     randomPost = await Post.aggregate([{ $match: {} }, { $sample: { size: 1 } }])
     return randomPost[0]._id
 }
@@ -134,7 +144,7 @@ async function createSomePosts(n_records) {
 
         const makePost = await Post.create({
             discussion_tags: createFakeTopics(),
-            content: faker.lorem.paragraph(Math.floor(Math.random()*5)),
+            content: faker.lorem.paragraph(Math.floor(Math.random() * 5)),
             user_id: userId,
             users_who_liked: usersIdsWhoLiked
 
@@ -143,32 +153,52 @@ async function createSomePosts(n_records) {
     }
 }
 
-async function createSomeComments(n_records){
-    if(!n_records){
+async function createSomeComments(n_records) {
+    if (!n_records) {
         n_records = 30
     }
 
     for (let i = 0; i < n_records; i++) {
-        let userId = await findARandomUserId()
-        let usersIdsWhoLiked = await findSomeRandomUserIds()
+        const userId = await findARandomUserId()
+        const usersIdsWhoLikedComment = await findSomeRandomUserIds()
+        const postIdToCommentOn = await findARandomPostId()
+        const n_replies_to_make = Math.floor(Math.random() * 3)
+
+        const sampleReplies = []
+        for (let i = 0; i < n_replies_to_make; i++) {
+            const userIdWhoMadeReply = await findARandomUserId()
+            const userIdsWhoLikedReply = await findSomeRandomUserIds()
+            const sampleReply = await Reply.create({
+                content: faker.lorem.sentences(Math.floor(Math.random() * 2)),
+                user_id: userIdWhoMadeReply,
+                users_who_liked: userIdsWhoLikedReply
+
+            })
+            sampleReplies.push(sampleReply)
+        }
+
+        console.log(sampleReplies)
 
 
-        const makePost = await Post.create({
-            discussion_tags: createFakeTopics(),
-            content: faker.lorem.paragraph(Math.floor(Math.random()*5)),
+
+        const makeComment = await Comment.create({
+            post_id: postIdToCommentOn,
             user_id: userId,
-            users_who_liked: usersIdsWhoLiked
-
+            comment_reply: faker.lorem.sentences(Math.ceil(Math.random() * 3)),
+            replies: sampleReplies
         })
-        console.log(makePost)
+        console.log(makeComment)
     }
 }
 
-createSomeUsers()
-createSomePosts()
 
-
-
+async function seedFullDatabase(){
+    clearCollections()
+    createSomeUsers()
+    createSomePosts()
+    createSomeComments()
+}
+seedFullDatabase()
 //findARandomUserId()
 
 
