@@ -4,7 +4,7 @@ body {
     background-repeat: no-repeat;
     margin: 0px;
 }
-
+/*----- Navbar ----*/
 .nav-container {
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,6 @@ body {
     height: 90px;
     background-color: rgba(0, 0, 0, 0.357);
 }
-
 #NavText {
     margin-left: 60px;
     font-size: 30px;
@@ -24,7 +23,6 @@ body {
 #mainLink:visited {
     color: black;
 }
-
 #NavLoginBtn {
     margin-right: 60px;
     background: rgba(255, 255, 255, 0.926);
@@ -33,19 +31,80 @@ body {
     width: 90px;
     height: 35px;
 }
+/*-----------------*/
 
+
+/*------ main page (sign up) -----*/
 .signUpAreaContainer {
     display: flex;
-    justify-content: center;
-    margin-top: 5%;
+    margin-left: 15%;
+    margin-top: 8%;
+    width: 800px;
+    height: 650px;
+    background-color: rgba(255, 255, 255, 0.578);
 }
-.signUpArea {
+.signUpContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1000px;
-    height: 500px;
-    background-color: rgba(250, 235, 215, 0.597);
-    
+    margin-left: 7%;
+}
+#mainText {
+    font-size: 100px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+#usernameInput, #emailInput, #passwordInput {
+    width: 200px;
+    height: 25px;
+}
+#emailInputLabel {
+    margin-top:20px;
+}
+#emailInput {
+    margin-bottom: 20px;
+}
+#usernameInputLabel, #emailInputLabel, #passwordInputLabel {
+    color: white;
+    font-size: 21px;
+}
+#signUpForm {
+    width: 100%;
+}
+
+#signUpSubmitBtn {
+    margin-top: 20px;
+    width: 90px;
+    height: 25px;
+}
+#alreadyMsg { 
+    color: white;
+    margin-left: 7%;
+}
+#alreadyLink {
+    text-decoration: none;
+}
+#alreadyLink:visited {
+    color:black;
+}
+
+/*---------------------*/
+
+/*----- main page (login) -------*/
+.loginAreaContainer {
+    width: 450px;
+    height: 650px;
+    margin-left: 15%;
+    margin-top: 8%;
+    background-color: rgba(255, 255, 255, 0.578);
+}
+#loginText {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 35px;
+}
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
 }

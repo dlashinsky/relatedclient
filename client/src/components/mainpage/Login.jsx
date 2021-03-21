@@ -1,7 +1,7 @@
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-const SignUpLogin = () => {
+const Login = () => {
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -17,25 +17,27 @@ const SignUpLogin = () => {
             }
         }
 
-       
+        
 
     return (
-        <div className="signUpAreaContainer">
-                    <form className="signUpArea" onSubmit={handleSubmit}>
-                    
-                        <label htmlFor='usernameInput'>Username</label>
+        <div className="loginAreaContainer">
+                    <form onSubmit={handleSubmit}>
+                        <div class="loginContainer">
+                        <h1 id="loginText">Log in to your account</h1>
+                        <label id="usernameInputLabel" htmlFor='usernameInput'>Username</label>
                         <input id="usernameInput" type="text" placeholder="username" onChange={ e => setUsername(e.target.value)}></input>
                         
-                        <label htmlFor='emailInput'>Email</label>
+                        <label id="emailInputLabel" htmlFor='emailInput'>Email</label>
                         <input id="emailInput" type="email" placeholder="email" onChange={ e => setEmail(e.target.value)}></input>
 
-                        <label htmlFor='passwordInput'>Password</label>
+                        <label id="passwordInputLabel" htmlFor='passwordInput'>Password</label>
                         <input id="passwordInput" type="password" placeholder="password" onChange={ e => setPassword(e.target.value)}></input>
 
-                        <input type="submit" value="Sign up"></input>
+                        <input id="signUpSubmitBtn" type="submit" value="Log in"></input>
+                        </div>
                     </form>
                 </div>
     )
 }
 
-export default SignUpLogin
+export default Login
