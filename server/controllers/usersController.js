@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../models/User.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const authLockedRoute = require('./authLockedRoute')
 
 
 let topicsOfInterest = [];
@@ -14,14 +15,13 @@ router.post('/register', async (req, res) =>{
             email: req.body.email
         })
 
-        if(findUser) return res.json('Email Already exists')
+        if(findUser) return res.json({error: 'Email Already exists'})
         
         const findUserName = await User.findOne({
             username: req.body.username,
         })
 
-        if(findUserName) return res.json('Choose a different username')
-
+        if(findUserName) return res.json({ error: 'Choose a different username'})
 
         const password = req.body.password
         const saltRounds = 12
@@ -48,10 +48,38 @@ router.post('/register', async (req, res) =>{
         const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 60 * 60 })
         res.json({token})
 
-
     } catch (error) {
         console.log(error)
     }
+})
+
+router.post('/login', async (req, res) =>{
+    try {
+        const foundUser = await User.findOne({
+            email: req.body.email
+        })
+        if(!foundUser) return res.status(400).json({msg: noLoginMessage})
+
+        const matchPassword = await bcrypt.compare(req.body.password, foundUser.password)
+
+        const payload = {
+            name: foundUser.name,
+            email: foundUser.email,
+            id: foundUser.id
+        }
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 60 * 60 })
+        res.json({ token })
+    } catch (error) {
+        console.error
+    }
+
+    res.json({ status: 'User successfully logged in'})
+
+})
+
+router.get ('/auth-locked', authLockedRoute, (req, res) =>{
+    res.json( {status: "You're in in like flynn."})
 })
 
 
