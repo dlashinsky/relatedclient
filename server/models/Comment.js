@@ -10,6 +10,11 @@ const replySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    users_who_liked: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+
 })
 
 const commentSchema = new mongoose.Schema({
