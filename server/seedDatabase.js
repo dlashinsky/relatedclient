@@ -1,3 +1,5 @@
+//seed DB with sampler data 
+
 const faker = require('faker')
 require('./models')
 
