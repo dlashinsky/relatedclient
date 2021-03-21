@@ -1,3 +1,4 @@
+
 1. In index.js:  do we need a callback of "err" in db.on function to track bugs?
 
 2. Do we need to include 'auth-locked' in our routes?
@@ -7,4 +8,3 @@
         the JWT token is decryped and once the user CRUDs into the database
         its already authenticated and therefore no longer needing to decode
         the JWT token.
-
