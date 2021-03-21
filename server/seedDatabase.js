@@ -87,6 +87,14 @@ async function createSomeUsers(n_records){
     }
 }
 
+async function findARandomUser(){
+    // const count = await User.count()
+    // console.log(count)
+    randomUser = await User.aggregate([{$match:{}},{$sample:{size:1}}])
+    console.log(randomUser)
+
+}
+
 async function createSomePosts(n_records){
     if(!n_records){
         n_records = 20 //default to create 20 dummy posts
@@ -107,7 +115,8 @@ async function createSomePosts(n_records){
     // })
 }
 
-createSomePosts()
+//createSomePosts()
+findARandomUser()
 // for(i=0;i<50;i++){
 //     //console.log(createFakeZip())
 //     console.log(createFakeConditions())
