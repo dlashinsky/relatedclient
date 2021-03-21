@@ -29,10 +29,6 @@ app.get('/', (req, res) =>{
     res.send("ITS WORKING")
 })
 
-app.post('/login')
-
-app.post('/register')
-
 
 
 app.listen(PORT, () =>{
