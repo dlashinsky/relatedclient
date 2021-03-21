@@ -1,21 +1,47 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-const Login = () => {
+const Login = (props) => {
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-        const handleSubmit = (e) => {
-            e.preventDefault()
-            
-            const userInfo = {
-                username: username,
-                email: email,
-                password: password
-            }
+    const handleSubmit = async (e) => {
+        try {
+          e.preventDefault()
+          // post to backend with form data
+          const userInfo = {
+            username,
+            email: email,
+            password: password
+          }
+    
+          const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/users/login`, userInfo)
+    
+          const { token } = response.data
+    
+          // save the response jwt in local storage
+          localStorage.setItem('jwtToken', token)
+    
+          // decode jwt and set the app state to the jwt payload
+          const decoded = jwt_decode(token)
+          console.log(decoded)
+    
+          props.setCurrentUser(decoded)
+    
+        } catch(error) {
+          // if the login failed -- display a message
+          if(error.response.status === 400) {
+            setMessage('bad user name or password')
+          } else {
+            console.error(error)
+          }
         }
+      }
+    
+      // if check to see if the user is logged in, redirect to the profile
+      if(props.currentUser) return <Redirect to='/profile' component={ Profile } currentUser={ props.currentUser }/>
 
         
 
