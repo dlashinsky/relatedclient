@@ -69,7 +69,6 @@ function createFakeConditions() {
         } else {
             numberOfUserConditions = 2
         }
-
     }
     for (let i = 0; i < numberOfUserConditions; i++) {
         const randIndex = Math.floor(Math.random() * conditions.length)
