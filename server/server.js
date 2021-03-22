@@ -24,7 +24,7 @@ const middleware = ((req,res, next ) =>{
 })
 
 //CONTROLLERS
-app.use('/users', usersController)
+app.use('/api-v1/users', usersController)
 
 
 //INDEX ROUTES

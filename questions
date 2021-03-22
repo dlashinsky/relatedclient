@@ -8,3 +8,7 @@
         the JWT token is decryped and once the user CRUDs into the database
         its already authenticated and therefore no longer needing to decode
         the JWT token.
+
+
+3.  Issue with .env file:  Do we have to add it back everytime we push/pull to 
+    github?  

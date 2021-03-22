@@ -78,8 +78,18 @@ router.post('/login', async (req, res) =>{
 
 })
 
-router.get ('/auth-locked', authLockedRoute, (req, res) =>{
-    res.json( {status: "You're in in like flynn."})
+router.get('/auth-locked/news-feed', authLockedRoute, async (req,res) => {
+        
+})
+
+router.get('/auth-locked/profile', authLockedRoute, async (req, res) =>{
+
+    const userInfo = await User.findOne({
+        id: res.locals.user.id
+    })
+
+
+    res.json( { userInfo: userInfo } )
 })
 
 
