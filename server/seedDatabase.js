@@ -127,7 +127,7 @@ async function findSomeRandomUserIds() {
 }
 
 async function findARandomPostId() {
-    randomPost = await Post.aggregate([{ $match: {} }, { $sample: { size: 1 } }])
+    const randomPost = await Post.aggregate([{ $match: {} }, { $sample: { size: 1 } }])
     return randomPost[0]._id
 }
 
@@ -194,10 +194,10 @@ async function createSomeComments(n_records) {
 
 
 async function seedFullDatabase(){
-    clearCollections()
-    createSomeUsers()
-    createSomePosts()
-    createSomeComments()
+    await clearCollections()
+    await createSomeUsers()
+    await createSomePosts()
+    await createSomeComments()
 }
 seedFullDatabase()
 //findARandomUserId()
